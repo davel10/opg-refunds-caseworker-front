@@ -105,6 +105,10 @@ class ComposerStaticInitd1d29ee249614986f3c86cd750c780fc
             'Dflydev\\FigCookies\\' => 19,
             'DeepCopy\\' => 9,
         ),
+        'B' => 
+        array (
+            'Beta\\' => 5,
+        ),
         'A' => 
         array (
             'Aws\\' => 4,
@@ -317,6 +321,10 @@ class ComposerStaticInitd1d29ee249614986f3c86cd750c780fc
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Beta\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Beta/src',
         ),
         'Aws\\' => 
         array (
