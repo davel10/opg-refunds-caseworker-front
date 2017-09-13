@@ -39,22 +39,62 @@ class DownloadAction extends AbstractApiClientAction
                 'expected' => 0
             ]);
 
-            $flattened['donor.title'] = $application['donor']['name']['title'];
-            $flattened['donor.first-name'] = $application['donor']['name']['first'];
-            $flattened['donor.last-name'] = $application['donor']['name']['last'];
+            $flattened['donor.name.title'] = $application['donor']['name']['title'];
+            $flattened['donor.name.first'] = $application['donor']['name']['first'];
+            $flattened['donor.name.last'] = $application['donor']['name']['last'];
+            $flattened['donor.poa-name.title'] = '';
+            $flattened['donor.poa-name.first'] = '';
+            $flattened['donor.poa-name.last'] = '';
+            if (array_key_exists('poa-name', $application['donor'])) {
+                $flattened['donor.poa-name.title'] = $application['donor']['poa-name']['title'];
+                $flattened['donor.poa-name.first'] = $application['donor']['poa-name']['first'];
+                $flattened['donor.poa-name.last'] = $application['donor']['poa-name']['last'];
+            }
             $flattened['donor.dob'] = $application['donor']['dob'];
 
             $flattened['attorney.title'] = $application['attorney']['name']['title'];
             $flattened['attorney.first-name'] = $application['attorney']['name']['first'];
             $flattened['attorney.last-name'] = $application['attorney']['name']['last'];
+            $flattened['attorney.poa-name.title'] = '';
+            $flattened['attorney.poa-name.first'] = '';
+            $flattened['attorney.poa-name.last'] = '';
+            if (array_key_exists('poa-name', $application['attorney'])) {
+                $flattened['attorney.poa-name.title'] = $application['attorney']['poa-name']['title'];
+                $flattened['attorney.poa-name.first'] = $application['attorney']['poa-name']['first'];
+                $flattened['attorney.poa-name.last'] = $application['attorney']['poa-name']['last'];
+            }
             $flattened['attorney.dob'] = $application['attorney']['dob'];
 
-            $flattened['verification.case-number'] = $application['verification']['case-number'];
-            $flattened['verification.donor-postcode'] = $application['verification']['donor-postcode'];
-            $flattened['verification.attorney-postcode'] = $application['verification']['attorney-postcode'];
+            $flattened['case-number.have-poa-case-number'] = $application['case-number']['have-poa-case-number'];
+            $flattened['case-number.poa-case-number'] = $flattened['case-number.have-poa-case-number'] === 'yes' ? $application['case-number']['poa-case-number'] : '';
 
-            $flattened['contact.email'] = $application['contact']['email'];
-            $flattened['contact.mobile'] = $application['contact']['mobile'];
+            $flattened['postcodes.postcode-options.donor-postcode'] = 'no';
+            $flattened['contact.donor-postcode'] = '';
+            $flattened['postcodes.postcode-options.attorney-postcode'] = 'no';
+            $flattened['contact.attorney-postcode'] = '';
+            if (array_key_exists('postcodes', $application)) {
+                if (in_array('donor-postcode', $application['postcodes']['postcode-options'])) {
+                    $flattened['postcodes.postcode-options.donor-postcode'] = 'yes';
+                    $flattened['contact.donor-postcode'] = $application['postcodes']['donor-postcode'];
+                }
+                if (in_array('attorney-postcode', $application['postcodes']['postcode-options'])) {
+                    $flattened['postcodes.postcode-options.attorney-postcode'] = 'yes';
+                    $flattened['contact.attorney-postcode'] = $application['postcodes']['attorney-postcode'];
+                }
+            }
+
+            $flattened['contact.contact-options.email'] = 'no';
+            $flattened['contact.email'] = '';
+            if (in_array('email', $application['contact']['contact-options'])) {
+                $flattened['contact.contact-options.email'] = 'yes';
+                $flattened['contact.email'] = $application['contact']['email'];
+            }
+            $flattened['contact.contact-options.phone'] = 'no';
+            $flattened['contact.phone'] = '';
+            if (in_array('phone', $application['contact']['contact-options'])) {
+                $flattened['contact.contact-options.phone'] = 'yes';
+                $flattened['contact.phone'] = $application['contact']['phone'];
+            }
 
             $flattened['account.name'] = $application['account']['name'];
             $flattened['account.number'] = $application['account']['details']['account-number'];
