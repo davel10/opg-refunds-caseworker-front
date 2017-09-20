@@ -107,7 +107,7 @@ class Client
      * @return array|null
      * @throw RuntimeException | Exception\ApiException
      */
-    private function httpGet($path, array $query = [])
+    public function httpGet($path, array $query = [])
     {
         $url = new Uri($this->apiBaseUri . $path);
 
@@ -138,7 +138,7 @@ class Client
      * @return array
      * @throw RuntimeException | Exception\ApiException
      */
-    private function httpPost($path, array $payload)
+    public function httpPost($path, array $payload)
     {
         $url = new Uri($this->apiBaseUri . $path);
 

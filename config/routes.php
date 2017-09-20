@@ -39,3 +39,4 @@ $app->get('/refund', App\Action\RefundAction::class, 'refund');
 $app->get('/reporting', App\Action\ReportingAction::class, 'reporting');
 $app->get('/set-password', App\Action\PasswordSetNewAction::class, 'password.set.new');
 $app->get('/download', App\Action\DownloadAction::class, 'download');
+$app->get('/process-new-claim', App\Action\ProcessNewClaimAction::class, 'process.new.claim');
