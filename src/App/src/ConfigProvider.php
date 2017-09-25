@@ -48,6 +48,7 @@ class ConfigProvider
                 Action\ReportingAction::class => Action\ReportingAction::class,
 
                 Service\Date\IDateProvider::class => Service\Date\DateProvider::class,
+                Service\Details\DetailsFormatter::class => Service\Details\DetailsFormatter::class,
                 Service\Claim::class => Service\Claim::class,
             ],
             'factories'  => [
@@ -70,6 +71,7 @@ class ConfigProvider
 
                 // View Helper
                 Service\Date\DateFormatterPlatesExtension::class => Service\Date\DateFormatterPlatesExtensionFactory::class,
+                Service\Details\DetailsFormatterPlatesExtension::class => Service\Details\DetailsFormatterPlatesExtensionFactory::class,
                 Service\ErrorMapper\ErrorMapperPlatesExtension::class => Service\ErrorMapper\ErrorMapperPlatesExtensionFactory::class,
             ],
             'initializers' => [
