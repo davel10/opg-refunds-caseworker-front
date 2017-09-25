@@ -47,7 +47,7 @@ class ConfigProvider
                 Action\RefundAction::class => Action\RefundAction::class,
                 Action\ReportingAction::class => Action\ReportingAction::class,
 
-                Service\ClaimService::class => Service\ClaimService::class,
+                Service\Claim::class => Service\Claim::class,
             ],
             'factories'  => [
                 //  Actions
