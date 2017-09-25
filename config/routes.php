@@ -40,4 +40,4 @@ $app->get('/reporting', App\Action\ReportingAction::class, 'reporting');
 $app->get('/set-password', App\Action\PasswordSetNewAction::class, 'password.set.new');
 $app->get('/download', App\Action\DownloadAction::class, 'download');
 $app->get('/process-new-claim', App\Action\ProcessNewClaimAction::class, 'process.new.claim');
-$app->get('/claim/{id:\d+}', App\Action\ClaimAction::class, 'claim');
+$app->route('/claim/{id:\d+}', App\Action\ClaimAction::class, ['GET', 'POST'], 'claim');
