@@ -19,7 +19,7 @@ Mandatory: donor
         <dt class="details-term">Date of birth:</dt>
         <dd class="detail-definition"><?= $this->getDateOfBirthString($donor->getCurrent()->getDob()) ?></dd>
     </div>
-    <?php if ($donor->getPoa() !== null) { ?>
+    <?php if ($donor->getPoa() !== null && $donor->getPoa()->getName() !== null) { ?>
         <div class="">
             <dt class="details-term">Name on power attorney documents:</dt>
             <dd class="detail-definition"><?= $this->getFormattedName($donor->getPoa()->getName()) ?></dd>

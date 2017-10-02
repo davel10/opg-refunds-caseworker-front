@@ -513,12 +513,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:ministryofjustice/opg-refunds-caseworker-datamodels.git",
-                "reference": "190e6c05e2ed0de1d4eef370e05f52af110ae994"
+                "reference": "172cdf30430d6e34ddba6a894298c36ba4c215d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ministryofjustice/opg-refunds-caseworker-datamodels/zipball/190e6c05e2ed0de1d4eef370e05f52af110ae994",
-                "reference": "190e6c05e2ed0de1d4eef370e05f52af110ae994",
+                "url": "https://api.github.com/repos/ministryofjustice/opg-refunds-caseworker-datamodels/zipball/172cdf30430d6e34ddba6a894298c36ba4c215d4",
+                "reference": "172cdf30430d6e34ddba6a894298c36ba4c215d4",
                 "shasum": ""
             },
             "require": {
@@ -541,7 +541,7 @@
                 "source": "https://github.com/ministryofjustice/opg-refunds-caseworker-datamodels/tree/donor-address",
                 "issues": "https://github.com/ministryofjustice/opg-refunds-caseworker-datamodels/issues"
             },
-            "time": "2017-10-02T12:09:43+00:00"
+            "time": "2017-10-02T12:24:30+00:00"
         },
         {
             "name": "ministryofjustice/opg-refunds-logger",

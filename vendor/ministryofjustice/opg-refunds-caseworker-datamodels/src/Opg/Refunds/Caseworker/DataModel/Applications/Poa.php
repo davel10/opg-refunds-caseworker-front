@@ -15,7 +15,7 @@ class Poa extends AbstractDataModel
     /**
      * @return Name
      */
-    public function getName(): Name
+    public function getName()
     {
         return $this->name;
     }

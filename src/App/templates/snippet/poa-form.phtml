@@ -13,7 +13,7 @@ Mandatory: system
  */
 
 $attorney = $claim->getApplication()->getAttorney();
-$attorneyName = $attorney->getPoa() !== null ? $this->getFormattedName($attorney->getPoa()->getName()) : $this->getFormattedName($attorney->getCurrent()->getName());
+$attorneyName = $attorney->getPoa() !== null && $attorney->getPoa()->getName() !== null ? $this->getFormattedName($attorney->getPoa()->getName()) : $this->getFormattedName($attorney->getCurrent()->getName());
 $postcodes = $claim->getApplication()->getPostcodes();
 ?>
 

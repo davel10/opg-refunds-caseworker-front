@@ -19,7 +19,7 @@ Mandatory: attorney
         <dt class="details-term">Date of birth:</dt>
         <dd class="detail-definition"><?= $this->getDateOfBirthString($attorney->getCurrent()->getDob()) ?></dd>
     </div>
-    <?php if ($attorney->getPoa() !== null) { ?>
+    <?php if ($attorney->getPoa() !== null && $attorney->getPoa()->getName() !== null) { ?>
         <div class="">
             <dt class="details-term">Name on power attorney documents:</dt>
             <dd class="detail-definition"><?= $this->getFormattedName($attorney->getPoa()->getName()) ?></dd>
