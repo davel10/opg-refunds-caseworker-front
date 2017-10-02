@@ -13,7 +13,7 @@ Mandatory: system
  */
 
 $attorney = $claim->getApplication()->getAttorney();
-$attorneyName = $attorney->getPoaName() !== null ? $this->getFormattedName($attorney->getPoaName()) : $this->getFormattedName($attorney->getName());
+$attorneyName = $attorney->getPoa() !== null ? $this->getFormattedName($attorney->getPoa()->getName()) : $this->getFormattedName($attorney->getCurrent()->getName());
 $postcodes = $claim->getApplication()->getPostcodes();
 ?>
 
@@ -62,7 +62,7 @@ $postcodes = $claim->getApplication()->getPostcodes();
 
     <?php $this->insert('snippet::input-radio', [
         'formElement' => $form->get('attorney'),
-        'question' => "Does {$attorneyName} and {$this->getDateOfBirthString($attorney->getDob())} match one attorney's details on the POA?",
+        'question' => "Does {$attorneyName} and {$this->getDateOfBirthString($attorney->getCurrent()->getDob())} match one attorney's details on the POA?",
         'options' => [
             'yes' => [
                 'optionLabel' => 'Yes'
