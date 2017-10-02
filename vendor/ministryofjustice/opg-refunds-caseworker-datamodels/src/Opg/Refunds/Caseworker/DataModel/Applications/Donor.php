@@ -44,7 +44,7 @@ class Donor extends AbstractDataModel
     /**
      * @return Poa
      */
-    public function getPoa(): Poa
+    public function getPoa()
     {
         return $this->poa;
     }

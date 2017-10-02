@@ -21,9 +21,9 @@ class DetailsFormatter
     public function getApplicantName(ApplicationModel $application)
     {
         if ($application->getApplicant() === 'donor') {
-            return "{$this->getFormattedName($application->getDonor()->getName())} (Donor)";
+            return "{$this->getFormattedName($application->getDonor()->getCurrent()->getName())} (Donor)";
         } elseif ($application->getApplicant() === 'attorney') {
-            return "{$this->getFormattedName($application->getAttorney()->getName())} (Attorney)";
+            return "{$this->getFormattedName($application->getAttorney()->getCurrent()->getName())} (Attorney)";
         }
 
         return '';
