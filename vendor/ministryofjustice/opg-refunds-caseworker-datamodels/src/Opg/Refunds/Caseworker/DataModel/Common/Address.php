@@ -24,7 +24,7 @@ class Address extends AbstractDataModel
     /**
      * @var string
      */
-    protected $postcode;
+    protected $addressPostcode;
 
     /**
      * @return string
@@ -86,18 +86,18 @@ class Address extends AbstractDataModel
     /**
      * @return string
      */
-    public function getPostcode(): string
+    public function getAddressPostcode(): string
     {
-        return $this->postcode;
+        return $this->addressPostcode;
     }
 
     /**
-     * @param string $postcode
+     * @param string $addressPostcode
      * @return $this
      */
-    public function setPostcode(string $postcode): Address
+    public function setAddressPostcode(string $addressPostcode): Address
     {
-        $this->postcode = $postcode;
+        $this->addressPostcode = $addressPostcode;
 
         return $this;
     }
