@@ -15,11 +15,6 @@ class Current extends AbstractDataModel
     protected $name;
 
     /**
-     * @var Address
-     */
-    protected $address;
-
-    /**
      * @var DateTime
      */
     protected $dob;
@@ -39,25 +34,6 @@ class Current extends AbstractDataModel
     public function setName(Name $name): Current
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return Address
-     */
-    public function getAddress(): Address
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param Address $address
-     * @return $this
-     */
-    public function setAddress(Address $address): Current
-    {
-        $this->address = $address;
 
         return $this;
     }
@@ -93,8 +69,6 @@ class Current extends AbstractDataModel
         switch ($property) {
             case 'name':
                 return (($value instanceof Name || is_null($value)) ? $value : new Name($value));
-            case 'address':
-                return (($value instanceof Address || is_null($value)) ? $value : new Address($value));
             case 'dob':
                 return (($value instanceof DateTime || is_null($value)) ? $value : new DateTime($value));
             default:

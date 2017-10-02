@@ -13,7 +13,7 @@ use DateTime;
 class Donor extends AbstractDataModel
 {
     /**
-     * @var Current
+     * @var CurrentWithAddress
      */
     protected $current;
 
@@ -23,18 +23,18 @@ class Donor extends AbstractDataModel
     protected $poa;
 
     /**
-     * @return Current
+     * @return CurrentWithAddress
      */
-    public function getCurrent(): Current
+    public function getCurrent(): CurrentWithAddress
     {
         return $this->current;
     }
 
     /**
-     * @param Current $current
+     * @param CurrentWithAddress $current
      * @return $this
      */
-    public function setCurrent(Current $current): Donor
+    public function setCurrent(CurrentWithAddress $current): Donor
     {
         $this->current = $current;
 
@@ -51,7 +51,7 @@ class Donor extends AbstractDataModel
 
     /**
      * @param Poa $poa
-     * @return Donor
+     * @return $this
      */
     public function setPoa(Poa $poa): Donor
     {
@@ -71,7 +71,7 @@ class Donor extends AbstractDataModel
     {
         switch ($property) {
             case 'current':
-                return (($value instanceof Current || is_null($value)) ? $value : new Current($value));
+                return (($value instanceof CurrentWithAddress || is_null($value)) ? $value : new CurrentWithAddress($value));
             case 'poa':
                 return (($value instanceof Poa || is_null($value)) ? $value : new Poa($value));
             default:
