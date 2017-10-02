@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e845f70e905abdf99e0de676df5208e8",
+    "content-hash": "6db4204510462da4bc6659797af6cc67",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.36.16",
+            "version": "3.36.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "f8bb15a002e709cba85de3981b0ffac7968fffb5"
+                "reference": "4bf27e8808e5e08a71b7fbdb951f51918c57a1c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f8bb15a002e709cba85de3981b0ffac7968fffb5",
-                "reference": "f8bb15a002e709cba85de3981b0ffac7968fffb5",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4bf27e8808e5e08a71b7fbdb951f51918c57a1c6",
+                "reference": "4bf27e8808e5e08a71b7fbdb951f51918c57a1c6",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-09-27T22:02:13+00:00"
+            "time": "2017-09-29T19:46:41+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -509,16 +509,16 @@
         },
         {
             "name": "ministryofjustice/opg-refunds-caseworker-datamodels",
-            "version": "dev-master",
+            "version": "dev-donor-address",
             "source": {
                 "type": "git",
                 "url": "git@github.com:ministryofjustice/opg-refunds-caseworker-datamodels.git",
-                "reference": "3355df1b70b21b90eebe94fc62a95c66b281ed63"
+                "reference": "80a45528b57bda009f14ce6f92ee42ecb4143e6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ministryofjustice/opg-refunds-caseworker-datamodels/zipball/3355df1b70b21b90eebe94fc62a95c66b281ed63",
-                "reference": "3355df1b70b21b90eebe94fc62a95c66b281ed63",
+                "url": "https://api.github.com/repos/ministryofjustice/opg-refunds-caseworker-datamodels/zipball/80a45528b57bda009f14ce6f92ee42ecb4143e6a",
+                "reference": "80a45528b57bda009f14ce6f92ee42ecb4143e6a",
                 "shasum": ""
             },
             "require": {
@@ -538,10 +538,10 @@
             ],
             "description": "PHP data models for the LPA Refunds project",
             "support": {
-                "source": "https://github.com/ministryofjustice/opg-refunds-caseworker-datamodels/tree/master",
+                "source": "https://github.com/ministryofjustice/opg-refunds-caseworker-datamodels/tree/donor-address",
                 "issues": "https://github.com/ministryofjustice/opg-refunds-caseworker-datamodels/issues"
             },
-            "time": "2017-09-28T11:35:59+00:00"
+            "time": "2017-10-02T07:25:38+00:00"
         },
         {
             "name": "ministryofjustice/opg-refunds-logger",
