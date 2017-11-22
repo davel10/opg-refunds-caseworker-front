@@ -4,7 +4,7 @@ namespace App\View\Details;
 
 use Opg\Refunds\Caseworker\DataModel\Applications\Application as ApplicationModel;
 use Opg\Refunds\Caseworker\DataModel\Cases\Claim as ClaimModel;
-use Opg\Refunds\Caseworker\DataModel\Common\Name as NameModel;
+use Opg\Refunds\Caseworker\DataModel\Cases\Note as NoteModel;
 use League\Plates\Engine;
 use League\Plates\Extension\ExtensionInterface;
 use InvalidArgumentException;
@@ -22,6 +22,8 @@ class DetailsFormatterPlatesExtension implements ExtensionInterface
         $engine->registerFunction('shouldShowPaymentDetailsUsedCountWarning', [$this, 'shouldShowPaymentDetailsUsedCountWarning']);
         $engine->registerFunction('getRejectionReasonsText', [$this, 'getRejectionReasonsText']);
         $engine->registerFunction('getStatusText', [$this, 'getStatusText']);
+        $engine->registerFunction('getOutcomeEmailDescription', [$this, 'getOutcomeEmailDescription']);
+        $engine->registerFunction('getOutcomeTextDescription', [$this, 'getOutcomeTextDescription']);
     }
 
     public function getApplicantName(ApplicationModel $application)
@@ -95,5 +97,47 @@ class DetailsFormatterPlatesExtension implements ExtensionInterface
             default:
                 return 'Unknown';
         }
+    }
+
+    public function getOutcomeEmailDescription(ClaimModel $claim)
+    {
+        $notes = [];
+
+        if ($claim->getStatus() === ClaimModel::STATUS_DUPLICATE) {
+            $notes = $claim->getNotesOfType(NoteModel::TYPE_CLAIM_DUPLICATE_EMAIL_SENT);
+        } elseif ($claim->getStatus() === ClaimModel::STATUS_REJECTED) {
+            $notes = $claim->getNotesOfType(NoteModel::TYPE_CLAIM_REJECTED_EMAIL_SENT);
+        } elseif ($claim->getStatus() === ClaimModel::STATUS_ACCEPTED) {
+            $notes = $claim->getNotesOfType(NoteModel::TYPE_CLAIM_ACCEPTED_EMAIL_SENT);
+        }
+
+        $notesDescription = [];
+
+        foreach ($notes as $note) {
+            $notesDescription[] = 'Email sent on ' . date('d/m/Y', $note->getCreatedDateTime()->getTimestamp());
+        }
+
+        return join('. ', $notesDescription);
+    }
+
+    public function getOutcomeTextDescription(ClaimModel $claim)
+    {
+        $notes = [];
+
+        if ($claim->getStatus() === ClaimModel::STATUS_DUPLICATE) {
+            $notes = $claim->getNotesOfType(NoteModel::TYPE_CLAIM_DUPLICATE_TEXT_SENT);
+        } elseif ($claim->getStatus() === ClaimModel::STATUS_REJECTED) {
+            $notes = $claim->getNotesOfType(NoteModel::TYPE_CLAIM_REJECTED_TEXT_SENT);
+        } elseif ($claim->getStatus() === ClaimModel::STATUS_ACCEPTED) {
+            $notes = $claim->getNotesOfType(NoteModel::TYPE_CLAIM_ACCEPTED_TEXT_SENT);
+        }
+
+        $notesDescription = [];
+
+        foreach ($notes as $note) {
+            $notesDescription[] = 'Text sent on ' . date('d/m/Y', $note->getCreatedDateTime()->getTimestamp());
+        }
+
+        return join('. ', $notesDescription);
     }
 }
