@@ -29,7 +29,7 @@ class DetailsFormatterPlatesExtension implements ExtensionInterface
         if ($application->getApplicant() === 'donor') {
             return "{$application->getDonor()->getCurrent()->getName()->getFormattedName()} (Donor)";
         } elseif ($application->getApplicant() === 'attorney') {
-            return "{$application->getAttorney()->getCurrent()->getName()} (Attorney)";
+            return "{$application->getAttorney()->getCurrent()->getName()->getFormattedName()} (Attorney)";
         }
 
         return '';
