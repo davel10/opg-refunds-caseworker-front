@@ -66,7 +66,7 @@ class DetailsFormatterPlatesExtension implements ExtensionInterface
 
     public function shouldShowPaymentDetailsUsedCountWarning($accountHashCount)
     {
-        return $accountHashCount > 2;
+        return $accountHashCount > 1;
     }
 
     public function getRejectionReasonsText(string $rejectionReason)
