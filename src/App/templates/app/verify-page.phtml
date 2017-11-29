@@ -25,15 +25,15 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Row number</th>
-                        <th>Claim code</th>
+                        <th style="width: 50%">Row number</th>
+                        <th style="width: 50%">Claim code</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($result['added'] as $claimCode => $spreadsheetHash){ ?>
+                    <?php foreach ($result['added'] as $spreadsheetHash){ ?>
                         <tr>
                             <td><?= $spreadsheetHash['row'] ?></td>
-                            <td><?= $claimCode ?></td>
+                            <td><?= $spreadsheetHash['claimCode'] ?></td>
                         </tr>
                     <?php } ?>
                     </tbody>
@@ -45,15 +45,15 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Row number</th>
-                        <th>Claim code</th>
+                        <th style="width: 50%">Row number</th>
+                        <th style="width: 50%">Claim code</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($result['changed'] as $claimCode => $spreadsheetHash){ ?>
+                    <?php foreach ($result['changed'] as $spreadsheetHash){ ?>
                         <tr>
                             <td><?= $spreadsheetHash['row'] ?></td>
-                            <td><?= $claimCode ?></td>
+                            <td><?= $spreadsheetHash['claimCode'] ?></td>
                         </tr>
                     <?php } ?>
                     </tbody>
@@ -65,15 +65,15 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Row number</th>
-                        <th>Claim code</th>
+                        <th style="width: 50%">Original row number</th>
+                        <th style="width: 50%">Claim code</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($result['deleted'] as $claimCode => $spreadsheetHash){ ?>
+                    <?php foreach ($result['deleted'] as $spreadsheetHash){ ?>
                         <tr>
                             <td><?= $spreadsheetHash['row'] ?></td>
-                            <td><?= $claimCode ?></td>
+                            <td><?= $spreadsheetHash['claimCode'] ?></td>
                         </tr>
                     <?php } ?>
                     </tbody>
