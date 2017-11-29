@@ -38,4 +38,9 @@ class Refund implements ApiClientInterface
             'length' => $contentLength
         ];
     }
+
+    public function verifyRefundSpreadsheet()
+    {
+
+    }
 }

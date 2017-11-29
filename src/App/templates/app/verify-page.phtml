@@ -1,0 +1,38 @@
+<?php $this->layout('layout::default', ['title' => 'Notify'])
+
+/**
+ * @var \App\Form\Notify $form
+ */
+
+?>
+
+<h2 class="heading-medium heading-refunds">Verify rows in a SOP1 spreadsheet</h2>
+
+<div class="grid-row">
+    <div class="column-three-fifths">
+
+        <?php $this->insert('snippet::flash-messages', ['messages' => $messages]) ?>
+
+        <?php $this->insert('snippet::error-summary', [ 'form'=>$form ]) ?>
+
+        <form method="post" class="form">
+
+            <?php $this->insert('snippet::input-hidden', ['formElement' => $form->get('secret')]) ?>
+
+            <p>This page enables a previously generated SOP1 spreadsheet to be uploaded and the rows checked for any manual changes made after download.</p>
+            <p>It will notify you of any new, altered or deleted rows based on the data stored in the database.</p>
+
+            <?php $this->insert('snippet::input-file', [
+                'formElement' => $form->get('spreadsheet'),
+                'formLabel' => 'SOP1 spreadsheet'
+            ]) ?>
+
+            <div class="form-group">
+                <input type='submit' class="button" name='submit' value='Verify'>
+                <a class="button button-link" href="<?= $this->generateUrl('refund') ?>">Cancel</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
