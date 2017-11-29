@@ -17,11 +17,11 @@ class VerifyAction extends AbstractModelAction
     /**
      * @var RefundService
      */
-    private $verifyService;
+    private $refundService;
 
     public function __construct(RefundService $verifyService)
     {
-        $this->verifyService = $verifyService;
+        $this->refundService = $verifyService;
     }
 
     /**
@@ -48,10 +48,18 @@ class VerifyAction extends AbstractModelAction
     {
         $form = $this->getForm($request);
 
-        $form->setData($request->getParsedBody());
+        //Have to use $_FILES directly as Zend validation relies on the form data being in the files format rather than the Zend\Diactoros\UploadedFile provided by $request->getUploadedFiles()
+        $post = array_merge_recursive(
+            $request->getParsedBody(),
+            $_FILES
+        );
+
+        $form->setData($post);
 
         if ($form->isValid()) {
-            $notified = $this->verifyService->verifyAll();
+            $formData = $form->getData();
+
+            $notified = $this->refundService->verifyRefundSpreadsheet($request->getUploadedFiles()['spreadsheet']);
 
             if ($notified['total'] === 0) {
                 $message = 'No outcome notifications needed sending. Please try again later.';

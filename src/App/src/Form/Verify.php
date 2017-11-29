@@ -2,10 +2,10 @@
 
 namespace App\Form;
 
-use App\Validator;
 use Zend\Form\Element\File;
-use Zend\InputFilter\Input;
+use Zend\InputFilter\FileInput;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator\File\UploadFile;
 
 /**
  * Class Verify
@@ -25,10 +25,10 @@ class Verify extends AbstractForm
 
         //  Spreadsheet file
         $field = new File('spreadsheet');
-        $input = new Input($field->getName());
+        $input = new FileInput($field->getName());
 
         $input->getValidatorChain()
-            ->attach(new Validator\NotEmpty());
+            ->attach(new UploadFile());
 
         $input->setRequired(true);
 
