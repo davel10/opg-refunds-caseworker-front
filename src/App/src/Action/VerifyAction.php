@@ -56,30 +56,24 @@ class VerifyAction extends AbstractModelAction
 
         $form->setData($post);
 
+        $result = null;
+
         if ($form->isValid()) {
-            $formData = $form->getData();
+            $result = $this->refundService->verifyRefundSpreadsheet($request->getUploadedFiles()['spreadsheet']);
 
-            $notified = $this->refundService->verifyRefundSpreadsheet($request->getUploadedFiles()['spreadsheet']);
+            if ($result['valid'] === true) {
+                $this->setFlashInfoMessage($request, 'Spreadsheet is valid and has not been altered');
 
-            if ($notified['total'] === 0) {
-                $message = 'No outcome notifications needed sending. Please try again later.';
+                return $this->redirectToRoute('verify');
             } else {
-                $message = "Successfully sent outcome notifications for {$notified['processed']} claims. Verify time {$notified['verifyTime']}s.";
-
-                $remaining = $notified['total'] - $notified['processed'];
-                if ($remaining !== 0) {
-                    $message .= " There are still {$remaining} claims left to send outcome notifications for. Please try again.";
-                }
+                $form->setMessages(['spreadsheet' => ['WARNING Spreadsheet has been altered!']]);
             }
-
-            $this->setFlashInfoMessage($request, $message);
-
-            return $this->redirectToRoute('verify');
         }
 
         return new HtmlResponse($this->getTemplateRenderer()->render('app::verify-page', [
             'form'  => $form,
-            'messages' => $this->getFlashMessages($request)
+            'messages' => $this->getFlashMessages($request),
+            'result' => $result
         ]));
     }
 

@@ -2,11 +2,12 @@
 
 /**
  * @var \App\Form\Notify $form
+ * @var array $result
  */
 
 ?>
 
-<h2 class="heading-medium heading-refunds">Verify rows in a SOP1 spreadsheet</h2>
+<h1 class="heading-medium heading-refunds">Verify rows in a SOP1 spreadsheet</h1>
 
 <div class="grid-row">
     <div class="column-three-fifths">
@@ -15,24 +16,92 @@
 
         <?php $this->insert('snippet::error-summary', [ 'form'=>$form ]) ?>
 
-        <form method="post" class="form" enctype="multipart/form-data">
+        <?php if(isset($result) && $result !== null && $result['valid'] === false) { ?>
 
-            <?php $this->insert('snippet::input-hidden', ['formElement' => $form->get('secret')]) ?>
+            <h2 class="heading-small heading-refunds">Alterations</h2>
 
-            <p>This page enables a previously generated SOP1 spreadsheet to be uploaded and the rows checked for any manual changes made after download.</p>
-            <p>It will notify you of any new, altered or deleted rows based on the data stored in the database.</p>
+            <?php if(count($result['added']) > 0) { ?>
+                <h3 class="heading-small">Added rows</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Row number</th>
+                        <th>Claim code</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($result['added'] as $claimCode => $spreadsheetHash){ ?>
+                        <tr>
+                            <td><?= $spreadsheetHash['row'] ?></td>
+                            <td><?= $claimCode ?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            <?php } ?>
 
-            <?php $this->insert('snippet::input-file', [
-                'formElement' => $form->get('spreadsheet'),
-                'formLabel' => 'SOP1 spreadsheet'
-            ]) ?>
+            <?php if(count($result['changed']) > 0) { ?>
+                <h3 class="heading-small">Changed rows</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Row number</th>
+                        <th>Claim code</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($result['changed'] as $claimCode => $spreadsheetHash){ ?>
+                        <tr>
+                            <td><?= $spreadsheetHash['row'] ?></td>
+                            <td><?= $claimCode ?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            <?php } ?>
 
-            <div class="form-group">
-                <input type='submit' class="button" name='submit' value='Verify'>
-                <a class="button button-link" href="<?= $this->generateUrl('refund') ?>">Cancel</a>
-            </div>
+            <?php if(count($result['deleted']) > 0) { ?>
+                <h3 class="heading-small">Deleted rows</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Row number</th>
+                        <th>Claim code</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($result['deleted'] as $claimCode => $spreadsheetHash){ ?>
+                        <tr>
+                            <td><?= $spreadsheetHash['row'] ?></td>
+                            <td><?= $claimCode ?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            <?php } ?>
 
-        </form>
+        <?php } else { ?>
+
+            <form method="post" class="form" enctype="multipart/form-data">
+
+                <?php $this->insert('snippet::input-hidden', ['formElement' => $form->get('secret')]) ?>
+
+                <p>This page enables a previously generated SOP1 spreadsheet to be uploaded and the rows checked for any manual changes made after download.</p>
+                <p>It will notify you of any new, altered or deleted rows based on the data stored in the database.</p>
+
+                <?php $this->insert('snippet::input-file', [
+                    'formElement' => $form->get('spreadsheet'),
+                    'formLabel' => 'SOP1 spreadsheet'
+                ]) ?>
+
+                <div class="form-group">
+                    <input type='submit' class="button" name='submit' value='Verify'>
+                    <a class="button button-link" href="<?= $this->generateUrl('refund') ?>">Cancel</a>
+                </div>
+
+            </form>
+
+        <?php } ?>
 
     </div>
 </div>

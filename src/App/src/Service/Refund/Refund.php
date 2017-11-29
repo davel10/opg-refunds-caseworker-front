@@ -42,6 +42,8 @@ class Refund implements ApiClientInterface
 
     public function verifyRefundSpreadsheet(UploadedFile $spreadsheetFile)
     {
-        $response = $this->getApiClient()->httpPostFile('/v1/spreadsheet', $spreadsheetFile);
+        $result = $this->getApiClient()->httpPostFile('/v1/spreadsheet', $spreadsheetFile);
+
+        return $result;
     }
 }
