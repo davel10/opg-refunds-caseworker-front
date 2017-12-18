@@ -272,11 +272,10 @@ $poasPerClaim = $reports['poasPerClaim'];
         <table>
             <thead>
             <tr>
-                <th class="numeric" style="width: 20%">No eligible POAs found</th>
-                <th class="numeric" style="width: 20%">POA already refunded</th>
-                <th class="numeric" style="width: 20%">No fees paid</th>
-                <th class="numeric" style="width: 20%">Details not verified</th>
-                <th class="numeric" style="width: 20%">Other</th>
+                <th class="numeric" style="width: 25%">No eligible POAs found</th>
+                <th class="numeric" style="width: 25%">POA already refunded</th>
+                <th class="numeric" style="width: 25%">No fees paid</th>
+                <th class="numeric" style="width: 25%">Details not verified</th>
             </tr>
             </thead>
             <tbody>
@@ -285,7 +284,6 @@ $poasPerClaim = $reports['poasPerClaim'];
                 <td class="numeric"><?= $this->getValueWithPercentage($rejectionReasonAllTime['total'], $rejectionReasonAllTime[ClaimModel::REJECTION_REASON_PREVIOUSLY_REFUNDED]) ?></td>
                 <td class="numeric"><?= $this->getValueWithPercentage($rejectionReasonAllTime['total'], $rejectionReasonAllTime[ClaimModel::REJECTION_REASON_NO_FEES_PAID]) ?></td>
                 <td class="numeric"><?= $this->getValueWithPercentage($rejectionReasonAllTime['total'], $rejectionReasonAllTime[ClaimModel::REJECTION_REASON_CLAIM_NOT_VERIFIED]) ?></td>
-                <td class="numeric"><?= $this->getValueWithPercentage($rejectionReasonAllTime['total'], $rejectionReasonAllTime[ClaimModel::REJECTION_REASON_OTHER]) ?></td>
             </tr>
             </tbody>
         </table>
