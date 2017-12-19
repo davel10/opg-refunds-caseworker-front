@@ -23,6 +23,7 @@ class Claim extends AbstractDataModel
     const STATUS_DUPLICATE = 'duplicate';
     const STATUS_REJECTED = 'rejected';
     const STATUS_ACCEPTED = 'accepted';
+    const STATUS_WITHDRAWN = 'withdrawn';
 
     const REJECTION_REASON_NO_ELIGIBLE_POAS_FOUND = 'noEligiblePoasFound';
     const REJECTION_REASON_PREVIOUSLY_REFUNDED = 'previouslyRefunded';
@@ -1015,7 +1016,8 @@ class Claim extends AbstractDataModel
     {
         return ($this->getStatus() === ClaimModel::STATUS_ACCEPTED && $this->getPayment() === null)
             || $this->getStatus() === ClaimModel::STATUS_REJECTED
-            || $this->getStatus() === ClaimModel::STATUS_DUPLICATE;
+            || $this->getStatus() === ClaimModel::STATUS_DUPLICATE
+            || $this->getStatus() === ClaimModel::STATUS_WITHDRAWN;
     }
 
     /**
@@ -1042,7 +1044,8 @@ class Claim extends AbstractDataModel
     {
         return $this->getStatus() === ClaimModel::STATUS_ACCEPTED
             || $this->getStatus() === ClaimModel::STATUS_REJECTED
-            || $this->getStatus() === ClaimModel::STATUS_DUPLICATE;
+            || $this->getStatus() === ClaimModel::STATUS_DUPLICATE
+            || $this->getStatus() === ClaimModel::STATUS_WITHDRAWN;
     }
 
     /**
